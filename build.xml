@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="ZoinerBuild" name="Zoiner">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+	
+	<property name="proj.name" value="Zoiner" />
+	<property name="global.dist.dir" value="../dist" />
+	<property name="zin.jar.dir" value="./compiled-jar" />
+	
+	<!-- ZinUtil properties -->
+	<property name="zin.Util.class.dir" value="./bin" />
+	<property name="zin.Util.src.dir" value="./src:./test" />
+	<property name="zin.Util.lib.dir" value="./lib" />
+	
+	
+	<property name="zin.Util.properties.dir" value="." />
+
+
+	<path id="zin-Util-jar-classpath">
+		<fileset dir="${zin.Util.lib.dir}" includes="*.jar" />
+	</path>
+	
+	<target name="ZoinerBuild" description="Compile my non ant Project">
+
+		<delete dir="${zin.Util.class.dir}" />
+
+		<mkdir dir="${zin.Util.class.dir}" />
+
+		<javac encoding="iso-8859-1" destdir="${zin.Util.class.dir}" source="1.8" target="1.8" debug="true" deprecation="false" optimize="false" failonerror="true" srcdir="${zin.Util.src.dir}" memoryMaximumSize="512m" fork="yes">
+			<classpath refid="zin-Util-jar-classpath" />
+		</javac>
+
+		<jar destfile="${global.dist.dir}/${proj.name}.jar" basedir="${zin.Util.class.dir}">
+			<!--
+			<fileset dir="${build.dist.dir}/classes">
+				<include name="com/**/*.class" />
+			</fileset>
+			-->
+		</jar>
+		<jar destfile="${zin.jar.dir}/${proj.name}.jar" basedir="${zin.Util.class.dir}">
+			<!--
+			<fileset dir="${build.dist.dir}/classes">
+				<include name="com/**/*.class" />
+			</fileset>
+			-->
+		</jar>
+	</target>
+	
+	<target name="ZoinerBuild_Fat_Client" description="It creates a zinUtil-standalone jar">
+		<delete dir="${zin.Util.class.dir}" />
+
+		<mkdir dir="${zin.Util.class.dir}" />
+
+		<javac encoding="iso-8859-1" destdir="${zin.Util.class.dir}" source="1.8" target="1.8" debug="true" deprecation="false" optimize="false" failonerror="true" srcdir="${zin.Util.src.dir}" memoryMaximumSize="512m" fork="yes">
+			<classpath refid="zin-Util-jar-classpath" />
+		</javac>
+
+		<zip destfile="${global.dist.dir}/${proj.name}-Fat.jar" basedir="${zin.Util.class.dir}">
+			<zipgroupfileset dir="${zin.Util.lib.dir}" includes="*.jar"/>
+		</zip>
+		<zip destfile="${zin.jar.dir}/${proj.name}-Fat.jar" basedir="${zin.Util.class.dir}">
+			<zipgroupfileset dir="${zin.Util.lib.dir}" includes="*.jar"/>
+		</zip>
+		
+	</target>
+	
+</project>
