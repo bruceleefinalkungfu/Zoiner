@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ZonerTo {
+public @interface ZoinerTo {
 	public Class<?> to();
 }

@@ -5,12 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.zoiner.mapper.ZonerMapper;
+import com.zoiner.mapper.ZoinerMapper;
 
 /**
  * Suppose source class Emp has a field empId, which maps to target class Employee's employeeId field.
  * <br>
- * Then put use {@link ZonerField#toFieldName()} to specify "employeeId" above empId field.
+ * Then put use {@link ZoinerField#toFieldName()} to specify "employeeId" above empId field.
  * <br><br>
  * Suppose this is the class structure<br>
  * <code>
@@ -31,20 +31,20 @@ import com.zoiner.mapper.ZonerMapper;
  * Same value has to be filled in all the employees' compId and designations' companyId.
  * It can be achieved using this.<br>
  * // Annotate the class with itself<br>
- * {@link ZonerTo#to()}=Company.class<br>
+ * {@link ZoinerTo#to()}=Company.class<br>
  * Class Company {<br>
- * // Annotate the field with {@link ZonerField} annotation<br>
- * {@link ZonerField#cacheWithThisName()}="xyzId"<br>
+ * // Annotate the field with {@link ZoinerField} annotation<br>
+ * {@link ZoinerField#cacheWithThisName()}="xyzId"<br>
  * String id;<br>
  * List<Emp> emps;<br>
  * }<br>
  * Class Emp {<br>
- * {@link ZonerField#getFromCacheUsingThisName()}="xyzId"<br>
+ * {@link ZoinerField#getFromCacheUsingThisName()}="xyzId"<br>
  * String compId;<br>
  * Designation desc;<br>
  * }<br>
  * Class Designation {<br>
- * {@link ZonerField#getFromCacheUsingThisName()}="xyzId"<br>
+ * {@link ZoinerField#getFromCacheUsingThisName()}="xyzId"<br>
  * String companyId;<br>
  * String jobTitle;<br>
  * }<br>
@@ -54,7 +54,7 @@ import com.zoiner.mapper.ZonerMapper;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ZonerField {
+public @interface ZoinerField {
 	String toFieldName() default "";
 	String getFromCacheUsingThisName() default "";
 	String cacheWithThisName() default "";
